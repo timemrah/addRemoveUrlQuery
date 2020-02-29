@@ -1,23 +1,29 @@
-function addRemoveUrlQuery(addParam = {}, removeParam = [], startQueryChar = '?'){
+function addRemoveUrlQuery(addParam = {}, removeParam = [], startQueryChar = '?') {
 
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
 
-    //Add param
-    for(let i in addParam){
-        if(urlParams.has(i)){ urlParams.set(i, addParam[i]); }
-        else                { urlParams.append(i, addParam[i]); }
-    }
+    addParam = addParam || {}
 
-    //Remove param
-    for(let i of removeParam){
-        if(urlParams.has(i)){
-            urlParams.delete(i);
+    // Add param
+    for (const i in addParam) {
+        if (urlParams.has(i)) {
+            urlParams.set(i, addParam[i]);
+        }
+        else {
+            urlParams.append(i, addParam[i]);
         }
     }
 
-    if(urlParams.toString()){
+    removeParam = removeParam || []
+
+    // Remove param
+    for (const i of removeParam) {
+        urlParams.delete(i);
+    }
+
+    if (urlParams.toString()) {
         return startQueryChar + urlParams.toString();
     }
 
-    return '';
+    return window.location.search;
 }
