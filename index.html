@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="addRemoveUrlQuery.js"></script>
+</head>
+<body>
+
+
+<p>Please first press Link 1 then Link 2.</p>
+
+    <div>
+        <h3>Example 2</h3>
+        <p>
+            <a href="index.html?page=5">Link 1</a>
+            <a href="index.html" id="link2">Link 2</a>
+        </p>
+    </div>
+
+
+    <div>
+        <h3>Example 2</h3>
+        <p>
+            <a href="index.html?category=12&page=5">Link 3</a>
+            <a href="index.html" id="link4">Link 4</a>
+        </p>
+    </div>
+
+
+
+    <div>
+        <h3>Example 3</h3>
+        <p>
+            <a href="index.html?category=1&page=5">Link 5</a>
+            <a href="index.html" id="link6">Link 6</a>
+        </p>
+    </div>
+
+<script>
+
+
+    //Link2 - add param example
+    let link2 = document.getElementById('link2');
+    link2.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        window.location = this.href + addRemoveUrlQuery({'anyParam':'anyValue'});
+
+    });
+
+
+    //Link4 - remove param example
+    let link4 = document.getElementById('link4');
+    link4.addEventListener('click', function (e) {
+
+        e.preventDefault();
+
+        window.location = this.href + addRemoveUrlQuery({}, ['page']);
+
+    });
+
+
+    //Link6 - add remove param example
+    let link6 = document.getElementById('link6');
+    link6.addEventListener('click', function (e) {
+
+        e.preventDefault();
+
+        window.location = addRemoveUrlQuery({'category':'cars'}, ['page']);
+
+    });
+</script>
+</body>
+</html>
